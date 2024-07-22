@@ -2,13 +2,7 @@
  * External dependencies.
  */
 import { useRef } from "react";
-import Image from "next/image";
 import { BarLoader } from "react-spinners";
-
-/**
- * Internal dependencies.
- */
-import lighthouseIcon from "../../public/google-lighthouse.svg";
 
 const SinglePageForm = ({ handleSubmit, errorMsg, isLoading }) => {
   const siteUrlRef = useRef(null);
@@ -18,14 +12,6 @@ const SinglePageForm = ({ handleSubmit, errorMsg, isLoading }) => {
       <div className="flex justify-center min-h-[calc(100vh-100px)] items-center">
         <div className="flex flex-col items-center gap-12">
           <div className="flex flex-col items-center w-full">
-            <Image
-              priority
-              src={lighthouseIcon}
-              alt="Google Lighthouse"
-              height={60}
-              width={60}
-              className="mb-8 shadow-lg rounded-full"
-            />
             <h1 className="sm:text-4xl text-3xl font-medium title-font mb-4 text-gray-900">
               Lighthouse Insight - Single Page
             </h1>

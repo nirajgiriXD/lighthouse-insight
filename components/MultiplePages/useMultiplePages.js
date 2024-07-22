@@ -3,45 +3,88 @@
 /**
  * External dependencies.
  */
-import { useState, useRef } from "react";
+import { useState } from "react";
+
+/**
+ * Internal dependencies.
+ */
+import { isValidURL } from "../../utils";
 
 const useMultiplePages = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [report, setReport] = useState("");
-  const reportRef = useRef(null);
+  const [reports, setReports] = useState({});
+  const [showReport, setShowReport] = useState(false);
+  const [urls, setUrls] = useState([]);
 
-  const handleSubmit = async (url) => {
-    try {
-      setIsLoading(true);
+  const handleSubmit = async (_urls) => {
+    setIsLoading(true);
+    setShowReport(true);
 
-      const response = await fetch("/api/lighthouse", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          url,
-          type: "html",
-        }),
-      });
-
-      if (!response.ok) {
-        console.log("Something went wrong.");
+    // Create an array of promises for fetching data
+    const fetchPromises = _urls.map(async (url) => {
+      if (!isValidURL(url)) {
+        setReports((prev) => ({
+          ...prev,
+          [url]: {
+            report: "",
+            error: "Invalid URL",
+          },
+        }));
         return;
       }
 
-      const data = await response.json();
+      try {
+        const response = await fetch("/api/lighthouse", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            url,
+            type: "html",
+          }),
+        });
 
-      setReport(data.report);
-    } catch (e) {
-      setErrorMsg(e.message);
-    } finally {
-      setIsLoading(false);
-    }
+        if (!response.ok) {
+          const error = await response.text();
+          setReports((prev) => ({
+            ...prev,
+            [url]: {
+              report: "",
+              error: error,
+            },
+          }));
+          return;
+        }
+
+        const data = await response.json();
+        setReports((prev) => ({
+          ...prev,
+          [url]: {
+            report: data.report,
+            error: "",
+          },
+        }));
+
+        console.log(reports);
+      } catch (error) {
+        setReports((prev) => ({
+          ...prev,
+          [url]: {
+            report: "",
+            error: error.message,
+          },
+        }));
+      }
+    });
+
+    // Wait for all fetch operations to complete
+    await Promise.all(fetchPromises);
+
+    setIsLoading(false);
   };
 
-  return { handleSubmit, errorMsg, isLoading, report, reportRef };
+  return { handleSubmit, isLoading, reports, showReport, urls, setUrls };
 };
 
 export default useMultiplePages;

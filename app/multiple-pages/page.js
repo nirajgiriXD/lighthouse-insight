@@ -1,9 +1,4 @@
 /**
- * External dependencies.
- */
-import Image from "next/image";
-
-/**
  * Internal dependencies.
  */
 import { MultiplePages } from "../../components";

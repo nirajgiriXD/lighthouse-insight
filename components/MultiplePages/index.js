@@ -7,18 +7,20 @@ import useMultiplePages from "./useMultiplePages";
 import MultiplePagesReport from "./multiplePagesReport";
 import MultiplePagesForm from "./multiplePagesForm";
 
-const MultplePagesForm = () => {
-  const { handleSubmit, errorMsg, isLoading, report } = useMultiplePages();
+const MultplePages = () => {
+  const { handleSubmit, isLoading, reports, showReport, urls, setUrls } =
+    useMultiplePages();
 
-  return report ? (
-    <MultiplePagesReport report={report} />
+  return showReport ? (
+    <MultiplePagesReport reports={reports} urls={urls} />
   ) : (
     <MultiplePagesForm
       handleSubmit={handleSubmit}
-      errorMsg={errorMsg}
       isLoading={isLoading}
+      urls={urls}
+      setUrls={setUrls}
     />
   );
 };
 
-export default MultplePagesForm;
+export default MultplePages;

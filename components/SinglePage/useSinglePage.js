@@ -3,13 +3,12 @@
 /**
  * External dependencies.
  */
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const useSinglePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [report, setReport] = useState("");
-  const reportRef = useRef(null);
 
   const handleSubmit = async (url) => {
     try {
@@ -41,7 +40,7 @@ const useSinglePage = () => {
     }
   };
 
-  return { handleSubmit, errorMsg, isLoading, report, reportRef };
+  return { handleSubmit, errorMsg, isLoading, report };
 };
 
 export default useSinglePage;
