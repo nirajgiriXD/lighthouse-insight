@@ -41,7 +41,7 @@ const useCompareReports = () => {
           },
           body: JSON.stringify({
             url,
-            type: "html",
+            type: "json",
           }),
         });
 

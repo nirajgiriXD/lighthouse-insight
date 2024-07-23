@@ -15,8 +15,8 @@ const MultiplePagesReport = ({ reports, urls, isLoading }) => {
   };
 
   return (
-    <div className="w-[100vw] h-[calc(100vh-3.5rem-72px)] max-w-screen-2xl mx-auto overflow-hidden my-4">
-      <div className="flex flex-col h-full gap-4">
+    <div className="w-[100vw] h-[calc(100vh-3.5rem-72px)] max-w-screen-2xl mx-auto overflow-hidden my-6">
+      <div className="flex flex-col h-full gap-6">
         <div className="flex gap-2">
           <div className="whitespace-nowrap flex justify-center items-center border border-gray-300 px-4 rounded-md text-gray-800">
             {Object.keys(reports).length} / {urls.length}
