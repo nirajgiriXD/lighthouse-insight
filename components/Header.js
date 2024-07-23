@@ -32,7 +32,7 @@ const Header = () => {
   }, []);
 
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
         as="li"
         variant="small"
@@ -67,8 +67,8 @@ const Header = () => {
   );
 
   return (
-    <div className="max-h-[768px] w-[100vw] border shadow-sm overflow-y-auto">
-      <Navbar className="sticky top-0 z-10 h-max w-full max-w-screen-2xl mx-auto rounded-none py-2 lg:py-4 border-none outline-none shadow-none">
+    <div className="w-[100vw] border shadow-sm overflow-auto">
+      <Navbar className="sticky top-0 z-10 w-full max-w-screen-2xl mx-auto rounded-none py-2 lg:py-4 border-none outline-none shadow-none">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Link href="/">
             <Image src={logo} alt="Logo" width={34} height={34} />
@@ -77,7 +77,7 @@ const Header = () => {
             <div className="mr-4 hidden lg:block">{navList}</div>
             <IconButton
               variant="text"
-              className="h-6 w-6 -mt-6 mr-2 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+              className="h-6 w-6 mr-2 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               ripple={false}
               onClick={() => setOpenNav(!openNav)}
             >
