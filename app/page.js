@@ -1,13 +1,7 @@
 /**
  * External dependencies.
  */
-import Image from "next/image";
 import Link from "next/link";
-
-/**
- * Internal dependencies.
- */
-import lighthouseIcon from "../public/google-lighthouse.svg";
 
 export default function Home() {
   return (
