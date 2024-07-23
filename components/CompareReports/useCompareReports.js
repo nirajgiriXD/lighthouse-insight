@@ -10,7 +10,7 @@ import { useState } from "react";
  */
 import { isValidURL } from "../../utils";
 
-const useMultiplePages = () => {
+const useCompareReports = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [reports, setReports] = useState({});
   const [showReport, setShowReport] = useState(false);
@@ -85,4 +85,4 @@ const useMultiplePages = () => {
   return { handleSubmit, isLoading, reports, showReport, urls, setUrls };
 };
 
-export default useMultiplePages;
+export default useCompareReports;

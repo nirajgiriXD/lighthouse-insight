@@ -3,18 +3,18 @@
 /**
  * Internal dependencies.
  */
-import useMultiplePages from "./useMultiplePages";
-import MultiplePagesReport from "./multiplePagesReport";
-import MultiplePagesForm from "./multiplePagesForm";
+import useCompareReports from "./useCompareReports";
+import CompareReportsReport from "./compareReportsReport";
+import CompareReportsForm from "./compareReportsForm";
 
 const MultplePages = () => {
   const { handleSubmit, isLoading, reports, showReport, urls, setUrls } =
-    useMultiplePages();
+    useCompareReports();
 
   return showReport ? (
-    <MultiplePagesReport reports={reports} urls={urls} isLoading={isLoading} />
+    <CompareReportsReport reports={reports} urls={urls} isLoading={isLoading} />
   ) : (
-    <MultiplePagesForm
+    <CompareReportsForm
       handleSubmit={handleSubmit}
       urls={urls}
       setUrls={setUrls}

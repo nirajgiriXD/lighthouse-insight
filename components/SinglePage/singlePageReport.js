@@ -1,6 +1,6 @@
 const SinglePageReport = ({ report }) => {
   return (
-    <div className="w-[100vw] h-[calc(100vh-3.5rem)]">
+    <div className="w-[100vw] h-[calc(100vh-3.5rem)] overflow-hidden">
       <iframe
         srcDoc={report}
         title="Lighthouse Report"

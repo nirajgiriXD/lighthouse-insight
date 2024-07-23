@@ -3,10 +3,10 @@
 /**
  * External dependencies.
  */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BarLoader } from "react-spinners";
 
-const MultiplePagesReport = ({ reports, urls, isLoading }) => {
+const CompareReportsReport = ({ reports, urls }) => {
   const [selectedUrl, setSelectedUrl] = useState(urls[0]);
 
   const handleUrlChange = (event) => {
@@ -70,4 +70,4 @@ const MultiplePagesReport = ({ reports, urls, isLoading }) => {
   );
 };
 
-export default MultiplePagesReport;
+export default CompareReportsReport;

@@ -5,7 +5,7 @@
  */
 import { isValidURL } from "../../utils";
 
-const MultiplePagesForm = ({ handleSubmit, urls, setUrls }) => {
+const CompareReportsForm = ({ handleSubmit, urls, setUrls }) => {
   const handleTextChange = (e) => {
     const text = e.target.value;
     const _urls = text
@@ -21,10 +21,11 @@ const MultiplePagesForm = ({ handleSubmit, urls, setUrls }) => {
         <div className="flex flex-col items-center gap-12">
           <div className="flex flex-col items-center w-full">
             <h1 className="sm:text-4xl text-3xl font-medium title-font mb-4 text-gray-900">
-              Lighthouse Insight - Multiple Pages
+              Lighthouse Insight - Compare Reports
             </h1>
             <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font">
-              Lighthouse report will be generated for the specified URLs.
+              Lighthouse reports will be generated for the specified URLs,
+              allowing for comparisons.
             </h2>
           </div>
 
@@ -50,7 +51,7 @@ const MultiplePagesForm = ({ handleSubmit, urls, setUrls }) => {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="h-full w-full text-gray-700 text-sm shadow-sm border border-blue-gray-200 rounded-md p-2 text-center">
-                    {urls.length} URL{urls.length > 1 ? "s" : ""}
+                    {urls.length}
                   </div>
                   <button
                     type="submit"
@@ -68,4 +69,4 @@ const MultiplePagesForm = ({ handleSubmit, urls, setUrls }) => {
   );
 };
 
-export default MultiplePagesForm;
+export default CompareReportsForm;

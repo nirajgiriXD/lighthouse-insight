@@ -9,7 +9,7 @@ const SinglePageForm = ({ handleSubmit, errorMsg, isLoading }) => {
 
   return (
     <main className="max-w-c-1390 mx-auto w-full">
-      <div className="flex justify-center min-h-[calc(100vh-100px)] items-center">
+      <div className="flex justify-center items-center py-12 sm:py-24">
         <div className="flex flex-col items-center gap-12">
           <div className="flex flex-col items-center w-full">
             <h1 className="sm:text-4xl text-3xl font-medium title-font mb-4 text-gray-900">
