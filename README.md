@@ -16,9 +16,18 @@ Lighthouse Insight is a Next.js application designed to streamline the process o
 - Node.js (version 14 or higher)
 - npm or yarn
 
+#### Setup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/nirajgiriXD/lighthouse-insight.git
+cd lighthouse-insight
+```
+
 #### Installation
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
