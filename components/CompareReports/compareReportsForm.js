@@ -11,7 +11,8 @@ const CompareReportsForm = ({ handleSubmit, urls, setUrls }) => {
     const _urls = text
       .split("\n")
       .map((url) => url.trim())
-      .filter((url) => isValidURL(url));
+      .filter((url) => isValidURL(url))
+      .sort();
     setUrls(_urls);
   };
 
