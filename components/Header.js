@@ -16,7 +16,7 @@ import {
 /**
  * Internal dependencies.
  */
-import lighthouseIcon from "../public/google-lighthouse.svg";
+import logo from "../public/logo.png";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -71,13 +71,7 @@ const Header = () => {
       <Navbar className="sticky top-0 z-10 h-max w-full max-w-screen-2xl mx-auto rounded-none py-2 lg:py-4 border-none outline-none shadow-none">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Link href="/">
-            <Image
-              src={lighthouseIcon}
-              alt="Lighthouse Icon"
-              width={40}
-              height={40}
-              className="shadow-md rounded-full"
-            />
+            <Image src={logo} alt="Logo" width={34} height={34} />
           </Link>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
