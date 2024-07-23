@@ -4,7 +4,7 @@ const SinglePageReport = ({ report }) => {
       <iframe
         srcDoc={report}
         title="Lighthouse Report"
-        className="w-full h-full overflow-hidden"
+        className="w-full h-full"
       />
     </div>
   );
