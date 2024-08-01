@@ -3,12 +3,19 @@
 /**
  * External dependencies.
  */
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useRouter } from "next/navigation";
+
+/**
+ * Internal dependencies.
+ */
+import { ReportContext } from "../../contexts/reportContext";
 
 const useSinglePage = () => {
+  const router = useRouter();
+  const { reports, setReports } = useContext(ReportContext);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [report, setReport] = useState("");
 
   const handleSubmit = async (url) => {
     try {
@@ -32,15 +39,26 @@ const useSinglePage = () => {
 
       const data = await response.json();
 
-      setReport(data.report);
+      setReports((prev) => ({
+        single: data.report,
+        multiple: prev.multiple,
+      }));
     } catch (e) {
+      setReports((prev) => ({
+        single: "",
+        multiple: prev.multiple,
+      }));
       setErrorMsg(e.message);
     } finally {
       setIsLoading(false);
+
+      if (!errorMsg) {
+        router.push("/single-page/report");
+      }
     }
   };
 
-  return { handleSubmit, errorMsg, isLoading, report };
+  return { handleSubmit, errorMsg, isLoading, reports };
 };
 
 export default useSinglePage;

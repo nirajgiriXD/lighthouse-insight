@@ -8,5 +8,9 @@ export const metadata = {
 };
 
 export default function Home() {
-  return <CompareReports />;
+  return (
+    <div className="px-4">
+      <CompareReports />
+    </div>
+  );
 }

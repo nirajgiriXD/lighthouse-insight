@@ -8,5 +8,9 @@ export const metadata = {
 };
 
 export default function Home() {
-  return <MultiplePages />;
+  return (
+    <div className="px-4">
+      <MultiplePages />
+    </div>
+  );
 }

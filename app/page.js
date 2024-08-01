@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="max-w-c-1390 w-full flex flex-col gap-12 md:gap-24 items-center py-12 md:py-24">
+    <main className="max-w-c-1390 w-full flex flex-col gap-12 md:gap-24 items-center py-12 md:py-24 px-4">
       <div className="flex flex-col items-center w-full">
         <h1 className="sm:text-4xl text-3xl font-medium title-font mb-4 text-gray-900">
           Lighthouse Insight

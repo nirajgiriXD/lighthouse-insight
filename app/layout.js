@@ -1,6 +1,14 @@
+/**
+ * External dependencies.
+ */
 import { Inter } from "next/font/google";
+
+/**
+ * Internal dependencies.
+ */
 import "../styles/globals.css";
 import Header from "../components/Header";
+import { ReportProvider } from "../contexts/reportContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <div className="px-4">{children}</div>
+        <ReportProvider>{children}</ReportProvider>
       </body>
     </html>
   );

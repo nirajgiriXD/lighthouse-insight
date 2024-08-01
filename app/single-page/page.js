@@ -1,9 +1,4 @@
 /**
- * External dependencies.
- */
-import Image from "next/image";
-
-/**
  * Internal dependencies.
  */
 import { SinglePage } from "../../components";
@@ -13,5 +8,9 @@ export const metadata = {
 };
 
 export default function Home() {
-  return <SinglePage />;
+  return (
+    <div className="px-4">
+      <SinglePage />
+    </div>
+  );
 }
