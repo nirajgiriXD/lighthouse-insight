@@ -64,8 +64,8 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/compare-reports" className="flex items-center">
-          Compare Reports
+        <a href="/reports-comparision" className="flex items-center">
+          Reports Comparision
         </a>
       </Typography>
     </ul>

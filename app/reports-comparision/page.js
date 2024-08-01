@@ -1,7 +1,7 @@
 /**
  * Internal dependencies.
  */
-import { CompareReports } from "../../components";
+import { ReportsComparision } from "../../components";
 
 export const metadata = {
   title: "Compare Reports",
@@ -10,7 +10,7 @@ export const metadata = {
 export default function Home() {
   return (
     <div className="px-4">
-      <CompareReports />
+      <ReportsComparision />
     </div>
   );
 }

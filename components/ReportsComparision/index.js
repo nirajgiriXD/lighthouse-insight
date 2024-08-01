@@ -3,9 +3,12 @@
 /**
  * Internal dependencies.
  */
+import useCompareReports from "./useCompareReports";
 import { isValidURL } from "../../utils";
 
-const CompareReportsForm = ({ handleSubmit, urls, setUrls }) => {
+const MultplePages = () => {
+  const { handleSubmit, urls, setUrls } = useCompareReports();
+
   const handleTextChange = (e) => {
     const text = e.target.value;
     const _urls = text
@@ -22,7 +25,7 @@ const CompareReportsForm = ({ handleSubmit, urls, setUrls }) => {
         <div className="flex flex-col items-center gap-12">
           <div className="flex flex-col items-center w-full">
             <h1 className="sm:text-4xl text-3xl font-medium title-font mb-4 text-gray-900">
-              Lighthouse Insight - Compare Reports
+              Lighthouse Insight - Reports Comparision
             </h1>
             <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font">
               Lighthouse reports will be generated for the specified URLs,
@@ -70,4 +73,4 @@ const CompareReportsForm = ({ handleSubmit, urls, setUrls }) => {
   );
 };
 
-export default CompareReportsForm;
+export default MultplePages;

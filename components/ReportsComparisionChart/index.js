@@ -3,24 +3,37 @@
 /**
  * External dependencies.
  */
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { BarLoader } from "react-spinners";
+import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
 /**
  * Internal dependencies.
  */
-import CompareReportsChart from "./compareReportsChart";
+import { ReportContext } from "../../contexts/reportContext";
 
-const CompareReportsReport = ({ reports, urls, isLoading }) => {
+const Chart = dynamic(() => import("./chart"), {
+  ssr: false,
+});
+
+const ReportsComparisionChart = () => {
+  const { reports, urls, isLoading } = useContext(ReportContext);
+  const router = useRouter();
+
   const [selectedUrlOne, setSelectedUrlOne] = useState(urls[0]);
   const [selectedUrlTwo, setSelectedUrlTwo] = useState(urls[0]);
+
+  if (Object.keys(reports.multiple).length === 0 && !isLoading) {
+    router.replace("/reports-comparision");
+  }
 
   return (
     <div className="w-[100vw] h-[calc(100vh-3.5rem-72px)] max-w-screen-2xl mx-auto overflow-hidden my-6">
       <div className="flex flex-col h-full w-full gap-6">
         <div className="flex gap-4">
           <div className="whitespace-nowrap flex justify-center items-center border border-gray-300 px-4 rounded-md text-gray-800">
-            {Object.keys(reports).length} / {urls.length}
+            {Object.keys(reports.multiple).length} / {urls.length}
           </div>
 
           <select
@@ -29,7 +42,7 @@ const CompareReportsReport = ({ reports, urls, isLoading }) => {
             className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           >
             {urls.map((url, key) => {
-              const hasReport = reports && reports[url] && reports[url].report;
+              const hasReport = reports?.multiple?.[url]?.report;
               return (
                 <option
                   key={key}
@@ -49,7 +62,7 @@ const CompareReportsReport = ({ reports, urls, isLoading }) => {
             className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
           >
             {urls.map((url, key) => {
-              const hasReport = reports && reports[url] && reports[url].report;
+              const hasReport = reports?.multiple?.[url]?.report;
               return (
                 <option
                   key={key}
@@ -80,11 +93,11 @@ const CompareReportsReport = ({ reports, urls, isLoading }) => {
           />
         )}
 
-        {reports?.[selectedUrlOne]?.report &&
-          reports?.[selectedUrlTwo]?.report && (
-            <CompareReportsChart
-              reportOne={reports[selectedUrlOne].report}
-              reportTwo={reports[selectedUrlTwo].report}
+        {reports?.multiple?.[selectedUrlOne]?.report &&
+          reports?.multiple?.[selectedUrlTwo]?.report && (
+            <Chart
+              reportOne={reports.multiple[selectedUrlOne].report}
+              reportTwo={reports.multiple[selectedUrlTwo].report}
             />
           )}
       </div>
@@ -92,4 +105,4 @@ const CompareReportsReport = ({ reports, urls, isLoading }) => {
   );
 };
 
-export default CompareReportsReport;
+export default ReportsComparisionChart;

@@ -3,31 +3,41 @@
 /**
  * External dependencies.
  */
-import { useState } from "react";
+import { useContext } from "react";
+import { useRouter } from "next/navigation";
 
 /**
  * Internal dependencies.
  */
 import { isValidURL } from "../../utils";
+import { ReportContext } from "../../contexts/reportContext";
 
 const useCompareReports = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [reports, setReports] = useState({});
-  const [showReport, setShowReport] = useState(false);
-  const [urls, setUrls] = useState([]);
+  const { reports, setReports, isLoading, setIsLoading, urls, setUrls } =
+    useContext(ReportContext);
+
+  const router = useRouter();
 
   const handleSubmit = async (_urls) => {
     setIsLoading(true);
-    setShowReport(true);
+    setReports((prev) => ({
+      single: prev.single,
+      multiple: {},
+    }));
+
+    router.push("/reports-comparision/results");
 
     // Create an array of promises for fetching data
     const fetchPromises = _urls.map(async (url) => {
       if (!isValidURL(url)) {
         setReports((prev) => ({
-          ...prev,
-          [url]: {
-            report: "",
-            error: "Invalid URL",
+          single: prev.single,
+          multiple: {
+            ...prev.multiple,
+            [url]: {
+              report: "",
+              error: "Invalid URL",
+            },
           },
         }));
         return;
@@ -48,10 +58,13 @@ const useCompareReports = () => {
         if (!response.ok) {
           const error = await response.text();
           setReports((prev) => ({
-            ...prev,
-            [url]: {
-              report: "",
-              error: error,
+            single: prev.single,
+            multiple: {
+              ...prev.multiple,
+              [url]: {
+                report: "",
+                error: error,
+              },
             },
           }));
           return;
@@ -59,18 +72,24 @@ const useCompareReports = () => {
 
         const data = await response.json();
         setReports((prev) => ({
-          ...prev,
-          [url]: {
-            report: data.report,
-            error: "",
+          single: prev.single,
+          multiple: {
+            ...prev.multiple,
+            [url]: {
+              report: data.report,
+              error: "",
+            },
           },
         }));
       } catch (error) {
         setReports((prev) => ({
-          ...prev,
-          [url]: {
-            report: "",
-            error: error.message,
+          single: prev.single,
+          multiple: {
+            ...prev.multiple,
+            [url]: {
+              report: "",
+              error: error.message,
+            },
           },
         }));
       }
@@ -82,7 +101,7 @@ const useCompareReports = () => {
     setIsLoading(false);
   };
 
-  return { handleSubmit, isLoading, reports, showReport, urls, setUrls };
+  return { handleSubmit, isLoading, reports, urls, setUrls };
 };
 
 export default useCompareReports;
