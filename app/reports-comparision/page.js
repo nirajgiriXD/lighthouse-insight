@@ -1,16 +1,16 @@
 /**
  * Internal dependencies.
  */
-import { MultiplePages } from "../../components";
+import { ReportsComparision } from "../../components";
 
 export const metadata = {
-  title: "Multiple Pages",
+  title: "Compare Reports",
 };
 
 export default function Home() {
   return (
     <div className="px-4">
-      <MultiplePages />
+      <ReportsComparision />
     </div>
   );
 }

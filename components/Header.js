@@ -5,6 +5,7 @@
  */
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import {
   Navbar,
@@ -20,6 +21,10 @@ import logo from "../public/logo.png";
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
+
+  const pathname = usePathname();
+
+  const NO_HEADER_PATHS = ["/single-page/report", "/multiple-pages/report"];
 
   useEffect(() => {
     const resize = () => {
@@ -59,15 +64,19 @@ const Header = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="/compare-reports" className="flex items-center">
-          Compare Reports
+        <a href="/reports-comparision" className="flex items-center">
+          Reports Comparision
         </a>
       </Typography>
     </ul>
   );
 
   return (
-    <div className="w-[100vw] border shadow-sm overflow-auto">
+    <div
+      className={`w-[100vw] border shadow-sm overflow-auto ${
+        NO_HEADER_PATHS.includes(pathname) ? "hidden" : ""
+      }`}
+    >
       <Navbar className="sticky top-0 z-10 w-full max-w-screen-2xl mx-auto rounded-none py-2 lg:py-4 border-none outline-none shadow-none">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Link href="/">

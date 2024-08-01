@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * External dependencies.
  */
@@ -13,7 +15,7 @@ import {
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const CompareReportsChart = ({ reportOne, reportTwo }) => {
+const Chart = ({ reportOne, reportTwo }) => {
   const data = {
     labels: ["Performance", "Accessibility", "Best Practices", "SEO"],
     datasets: [
@@ -64,4 +66,4 @@ const CompareReportsChart = ({ reportOne, reportTwo }) => {
   );
 };
 
-export default CompareReportsChart;
+export default Chart;
